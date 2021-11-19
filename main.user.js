@@ -55,7 +55,7 @@ async function fixMyCourseTitle(){
 }
 
 async function OCWIntegration(){
-    if(location.href !== 'https://t2schola.titech.ac.jp/') return
+    if(location.pathname !== '/' && location.pathname !== '/course/index.php') return
 
     const h = await fetchHTML('https://secure.ocw.titech.ac.jp/ocwi/index.php')
     var nodes = Array(...h.querySelectorAll('#notPresented tr'))
@@ -88,7 +88,7 @@ async function OCWIntegration(){
     tbody.innerHTML = "<tr><th>課題締切日</th><th>講義名</th><th>課題タイトル</th></tr>"
     nodes.forEach(node=>{
         node.querySelectorAll("a").forEach(a=>{
-            url = new URL(a.href)
+            const url = new URL(a.href)
             a.href = 'https://secure.ocw.titech.ac.jp/ocwi/index.php'+ url.search
         })
         tbody.append(node)
@@ -99,9 +99,26 @@ async function OCWIntegration(){
     mainDiv.prepend(styleElem)
 }
 
+async function smartCalender() {
+    if (location.pathname !== '/calendar/view.php') return
+    const styleElem = document.createElement('style')
+    styleElem.innerHTML = `
+    .maincalendar a {
+        white-space: normal !important;
+    }
+    ` 
+    document.querySelector('.maincalendar').prepend(styleElem)
+    document.querySelectorAll('span.eventname').forEach(node => {
+        const found = node.innerText.match(/^「(.*)」の提出期限が近づいています$/)
+        if(found)
+            node.innerText = found[1]
+    })
+}
+
 (async function() {
     'use strict';
 
     await fixMyCourseTitle()
     await OCWIntegration()
+    await smartCalender()
 })();
