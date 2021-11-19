@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         BETTER_T2SCHOLA
-// @version      0.2
+// @version      0.2.1
 // @description  T2SCHOLA is kasu
 // @author       mojashi
 // @match        https://t2schola.titech.ac.jp/*
