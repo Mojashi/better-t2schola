@@ -4,8 +4,8 @@
 // @description  T2SCHOLA is kasu
 // @author       mojashi
 // @match        https://t2schola.titech.ac.jp/*
-// @grant        GM.xmlHttpRequest
-// @updateURL    https://github.com/Mojashi/better-t2schola/blob/master/main.js
+// @grant        none
+// @updateURL	 https://github.com/Mojashi/better-t2schola/blob/master/main.user.js
 // ==/UserScript==
 
 function GMfetch(method, url) {
