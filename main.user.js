@@ -5,7 +5,7 @@
 // @author       mojashi
 // @match        https://t2schola.titech.ac.jp/*
 // @grant        none
-// @updateURL	https://github.com/Mojashi/better-t2schola/blob/master/main.js
+// @updateURL	 https://github.com/Mojashi/better-t2schola/blob/master/main.user.js
 // ==/UserScript==
 
 (async function() {
