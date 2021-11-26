@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         BETTER_T2SCHOLA
-// @version      0.4
+// @version      0.4.1
 // @description  T2SCHOLA is kasu
 // @author       mojashi
 // @match        https://t2schola.titech.ac.jp/*
@@ -44,7 +44,7 @@ async function fixMyCourseTitle(){
         var parser = new DOMParser();
         const cached = localStorage.getItem("title_" + url)
         if(!cached) {
-            const title = await fetchHTML(url).querySelectorAll(".page-header-headings")[0].innerText
+            const title = (await fetchHTML(url)).querySelectorAll(".page-header-headings")[0].innerText
             localStorage.setItem("title_" + url, title)
         }
         return localStorage.getItem("title_" + url)
